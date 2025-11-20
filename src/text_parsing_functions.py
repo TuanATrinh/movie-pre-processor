@@ -53,7 +53,7 @@ def lowercase_text(text):
     >>> lowercase_text('AbC')
     'abc'
     """
-    return text.lower()
+    pass
 
 
 def remove_punctuation(text, punctuation=punctuation):
@@ -81,8 +81,6 @@ def remove_punctuation(text, punctuation=punctuation):
     """
     # TODO: Your code here
     # Hint: Loop through each punctuation character and replace it
-    # Example: for char in punctuation:
-    #              text = text.replace(char, ?)
     pass
 
 
@@ -107,7 +105,6 @@ def remove_newline(text):
     'life happens when youre busy making other plans'
     """
     # TODO: Your code here
-    # Hint: Use .replace() to replace '\n' with a space ' '
     pass
 
 
@@ -132,7 +129,6 @@ def split_text_into_words(text):
     ['get', 'started', 'by', 'stop', 'talking', 'and', 'begin', 'doing']
     """
     # TODO: Your code here
-    # Hint: Look up the .split() method for strings
     pass
 
 
@@ -160,9 +156,6 @@ def remove_stopwords(word_lst, stopwords_set):
     ['tell', 'me', 'forget']
     """
     # TODO: Your code here
-    # Hint: You can use a list comprehension to filter words
-    # Example: [word for word in word_lst if condition]
-    # Condition: word should NOT be in stopwords_set
     pass
 
 
@@ -194,7 +187,6 @@ def replace_names(word_lst, name_set, replacement_val):
     # TODO: Your code here
     # Hint: Use a list comprehension with a conditional
     # If word is in name_set, use replacement_val, otherwise use word
-    # Example: [replacement_val if word in name_set else word for word in word_lst]
     pass
 
 
@@ -221,7 +213,6 @@ def create_cleaned_textline_from_words(words):
     """
     # TODO: Your code here
     # Hint: Use the .join() method
-    # Example: ' '.join(words) joins words with spaces between them
     pass
 
 
