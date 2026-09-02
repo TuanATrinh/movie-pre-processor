@@ -5,7 +5,7 @@ This module contains functions to transform raw text into cleaned text
 suitable for natural language processing tasks like clustering.
 """
 
-from string import punctuation
+import string
 
 
 def load_stopwords(filepath='data/stopwords.txt'):
@@ -31,10 +31,14 @@ def load_stopwords(filepath='data/stopwords.txt'):
     >>> 'the' in stopwords
     True
     """
-    with open(filepath, 'r', encoding='utf-8') as f:
+    with open(filepath, 'r') as file:
         # Read all lines, strip whitespace, and convert to set
-        return set(line.strip().lower() for line in f if line.strip())
+        stopwords = set()
 
+        for line in file:
+            stopwords.add(line.strip())
+
+    return stopwords
 
 def lowercase_text(text):
     """
@@ -266,7 +270,7 @@ def line_cleaning_pipeline(text, stopwords_set, name_set, replace_val):
         The cleaned text
     """
     text_lc = lowercase_text(text)
-    text_np = remove_punctuation(text_lc)
+    text_np = remove_punctuation(text_lc, string.punctuation)
     text_nnl = remove_newline(text_np)
     words = split_text_into_words(text_nnl)
     words_nsw = remove_stopwords(words, stopwords_set)
@@ -297,3 +301,61 @@ if __name__ == '__main__':
     # Example for testing remove_punctuation:
     # text_no_punct = remove_punctuation(text_lc)
     # print(f"No punctuation: {text_no_punct}")
+
+    # Test lowercase_text()
+    print(lowercase_text('HELLO WORLD'))
+
+    # Test remove_punctuation()
+    print(remove_punctuation('Hello, world!', string.punctuation))
+
+    # Test remove_newline()
+    print(remove_newline('Hello world\n'))
+
+    # Test split_text_into_words()
+    print(split_text_into_words('Hello world'))
+
+    # Test remove_stopwords()
+    print(remove_stopwords(
+        ['this', 'is', 'a', 'test'],
+        {'is', 'a'}
+    ))
+
+    # Test replace_names()
+    print(replace_names(
+        ['suan', 'goes', 'home'],
+        {'suan'},
+        'person'
+    ))
+
+    # Test create_cleaned_textline_from_words()
+    print(create_cleaned_textline_from_words(
+        ['this', 'is', 'a', 'test']
+    ))
+
+    # Test load_stopwords()
+    stopwords = load_stopwords('data/stopwords.txt')
+    print(stopwords)
+
+    # Test line_cleaning_pipeline()
+    names = {
+        'suan',
+        'seongkyeong',
+        'yonsuk',
+        'seokwoo',
+        'ingil',
+        'yonghuk',
+        'jinhee'
+    }
+
+    line = (
+        'Pregnant wife Seong-kyeong, '
+        'a high school baseball team, '
+        'rich-yet-egotistical'
+    )
+
+    print(line_cleaning_pipeline(
+        line,
+        stopwords,
+        names,
+        'person'
+    ))
