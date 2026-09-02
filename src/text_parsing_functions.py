@@ -53,10 +53,10 @@ def lowercase_text(text):
     >>> lowercase_text('AbC')
     'abc'
     """
-    pass
+    return text.lower()
 
 
-def remove_punctuation(text, punctuation=punctuation):
+def remove_punctuation(text, punctuation):
     """
     Returns a text string without punctuation.
 
@@ -81,7 +81,10 @@ def remove_punctuation(text, punctuation=punctuation):
     """
     # TODO: Your code here
     # Hint: Loop through each punctuation character and replace it
-    pass
+
+    for character in punctuation:
+        text = text.replace(character, '')
+    return text
 
 
 def remove_newline(text):
@@ -105,7 +108,8 @@ def remove_newline(text):
     'life happens when youre busy making other plans'
     """
     # TODO: Your code here
-    pass
+
+    return text.replace('\n', '')
 
 
 def split_text_into_words(text):
@@ -129,7 +133,7 @@ def split_text_into_words(text):
     ['get', 'started', 'by', 'stop', 'talking', 'and', 'begin', 'doing']
     """
     # TODO: Your code here
-    pass
+    return text.split()
 
 
 def remove_stopwords(word_lst, stopwords_set):
@@ -156,7 +160,14 @@ def remove_stopwords(word_lst, stopwords_set):
     ['tell', 'me', 'forget']
     """
     # TODO: Your code here
-    pass
+
+    cleaned_words =[]
+
+    for word in word_lst:
+        if word not in stopwords_set:
+            cleaned_words.append(word)
+
+    return cleaned_words
 
 
 def replace_names(word_lst, name_set, replacement_val):
@@ -187,8 +198,16 @@ def replace_names(word_lst, name_set, replacement_val):
     # TODO: Your code here
     # Hint: Use a list comprehension with a conditional
     # If word is in name_set, use replacement_val, otherwise use word
-    pass
 
+    cleaned_words = []
+
+    for word in word_lst:
+        if word in name_set:
+            cleaned_words.append(replacement_val)
+        else:
+            cleaned_words.append(word)
+
+    return cleaned_words
 
 def create_cleaned_textline_from_words(words):
     """
@@ -213,7 +232,8 @@ def create_cleaned_textline_from_words(words):
     """
     # TODO: Your code here
     # Hint: Use the .join() method
-    pass
+
+    return ' '.join(words)
 
 
 def line_cleaning_pipeline(text, stopwords_set, name_set, replace_val):
